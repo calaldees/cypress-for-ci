@@ -3,7 +3,11 @@ cypress-for-ci
 
 A docker container for running [cypress](https://www.cypress.io/) tests.
 
-The official documentation and install structure did not fit these requirements:
+
+Requirements
+------------
+
+The official cypress documentation and install structure did not fit these requirements:
 * A standalone container to run a set of cypress tests from a readonly `tests/` folder
 * Put all reports in a single `report/` folder
 * Tests can be in separate repo to any other project and be run with minimal dependencys
@@ -11,7 +15,10 @@ The official documentation and install structure did not fit these requirements:
 
 This repo is an example of building a cypress docker-container to run a _test folder_ and put all output in a single _report folder_
 
-Description of original deficencys
+
+Original cypress deficencys
+---------------------------
+
 * The [Cypress Install](https://docs.cypress.io/guides/getting-started/installing-cypress.html#Installing) process is `npm` based.
 * Cypress's [cypress/base](https://hub.docker.com/r/cypress/base/) official docker containers are mearly linux dependencys for `npm install cypress`
 * The `npm install` creates a local `./node_modules/` folder and extracts binarys to `~/.cache/`
@@ -38,7 +45,7 @@ Generate example default tests (locally)
 * These example tests are created the first time `cypress open` is called on an empty folder.
     * will create `cypress.json` and `./cypress/` example tests
 * `cypress open` requires a gui and cann't be (easily) run inside a container.
-* These examples can be generated on the host machine
+* These examples can be generated on the host machine if needed
     ```bash
         # ubuntu:18.04
         sudo apt-get install libgconf-2-4

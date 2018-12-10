@@ -1,4 +1,5 @@
-FROM cypress/base
+FROM cypress/browsers
+#FROM cypress/base  # `base` is only electron
 
 # cypress.Dockerfile - an engine to run cypress tests
 #

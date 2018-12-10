@@ -1,5 +1,7 @@
 version: "3.5"
 
+# PATH_HOST_REPORTS=./reports PATH_HOST_TESTS=./tests USER=$(id -u):$(id -g) docker-compose run --rm cypress
+#                                                     USER=$(id -u):$(id -g) docker-compose run --rm cypress
 
 services:
 
@@ -10,22 +12,16 @@ services:
       dockerfile: cypress.Dockerfile
       args:
         PATH_WORKDIR: ${PATH_CONTAINER_TESTS}
-    user: ${USER}  # USER=$(id -u):$(id -g) docker-compose run --rm cypress
+    user: ${USER}
     volumes:
       # USER passthrough
       - /etc/passwd:/etc/passwd:ro
       - /etc/group:/etc/group:ro
       # mount tests - readonly
-      - ./example/cypress.json:${PATH_CONTAINER_TESTS}/cypress.json:ro
-      - ./example/cypress/:${PATH_CONTAINER_TESTS}/cypress/:ro
+      - ${PATH_HOST_TESTS}/cypress.json:${PATH_CONTAINER_TESTS}/cypress.json:ro
+      - ${PATH_HOST_TESTS}:${PATH_CONTAINER_TESTS}/cypress/:ro
       # mount reports - writeable
       - ${PATH_HOST_REPORTS}:${PATH_CONTAINER_TESTS}/reports:rw
       - ${PATH_HOST_REPORTS}/screenshots:${PATH_CONTAINER_TESTS}/cypress/screenshots:rw
       - ${PATH_HOST_REPORTS}/videos:${PATH_CONTAINER_TESTS}/cypress/videos:rw
     command: run --reporter junit --reporter-options "mochaFile=${PATH_CONTAINER_TESTS}/reports/junit.[hash].xml"
-
-    #,toConsole=true
-
-    # WORKING_DIR=cypress_test && mkdir -p ${WORKING_DIR} && USER=$(id -u):$(id -g) docker-compose run cypress
-    # npm install --save-dev cypress
-    # ./node_modules/.bin/cypress run

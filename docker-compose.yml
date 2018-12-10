@@ -22,6 +22,6 @@ services:
       - ${PATH_HOST_TESTS}:${PATH_CONTAINER_TESTS}/cypress/:ro
       # mount reports - writeable
       - ${PATH_HOST_REPORTS}:${PATH_CONTAINER_TESTS}/reports:rw
-      - ${PATH_HOST_REPORTS}/screenshots:${PATH_CONTAINER_TESTS}/cypress/screenshots:rw
-      - ${PATH_HOST_REPORTS}/videos:${PATH_CONTAINER_TESTS}/cypress/videos:rw
+      - ${PATH_HOST_REPORTS}:${PATH_CONTAINER_TESTS}/cypress/screenshots:rw
+      - ${PATH_HOST_REPORTS}:${PATH_CONTAINER_TESTS}/cypress/videos:rw
     command: run --reporter junit --reporter-options "mochaFile=${PATH_CONTAINER_TESTS}/reports/junit.[hash].xml"

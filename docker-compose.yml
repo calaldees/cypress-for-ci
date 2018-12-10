@@ -23,7 +23,7 @@ services:
       - ${PATH_HOST_REPORTS}:${PATH_CONTAINER_TESTS}/reports:rw
       - ${PATH_HOST_REPORTS}:${PATH_CONTAINER_TESTS}/cypress/screenshots:rw
       - ${PATH_HOST_REPORTS}:${PATH_CONTAINER_TESTS}/cypress/videos:rw
-    entrypoint: 
+    entrypoint: # https://github.com/docker/compose/issues/4993#issuecomment-313201669
       - bash
       - -c
       - HOME=/tmp/ $${PATH_INSTALL}/node_modules/.bin/cypress run --reporter junit --reporter-options "mochaFile=${PATH_CONTAINER_TESTS}/reports/junit.[hash].xml" $$@

@@ -23,6 +23,7 @@ RUN \
     find ${CYPRESS_CACHE_FOLDER} -type d -exec chmod 0777 {} \;
 
 # Null audio output - when the container runs as a 'non-root' user, it does not have sound permissions
+# https://github.com/cypress-io/cypress-docker-images/issues/52#issuecomment-446144630
 # https://github.com/ValveSoftware/steam-for-linux/issues/2962#issuecomment-28081659
 # https://wiki.archlinux.org/index.php/Advanced_Linux_Sound_Architecture/Troubleshooting
 COPY asound.conf /etc/asound.conf

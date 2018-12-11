@@ -53,3 +53,14 @@ Generate example default tests (locally)
         npm install --save-dev cypress
         ./node_modules/.bin/cypress open
     ```
+
+
+Notes
+-----
+
+* Cypress does not currenty provide access to browser logs
+    * https://github.com/cypress-io/cypress/issues/448
+    * workaround https://github.com/cypress-io/cypress/issues/300#issuecomment-321587149
+* The docker container user (as it's set as the current user) - does not part of the audio group
+    * https://github.com/cypress-io/cypress-docker-images/issues/52
+    * https://askubuntu.com/a/345952

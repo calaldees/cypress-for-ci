@@ -7,7 +7,7 @@ services:
   cypress:
     image: cypress
     build:
-      context: ./
+      context: ./docker
       dockerfile: cypress.Dockerfile
       args:
         PATH_WORKDIR: ${PATH_CONTAINER_TESTS}
